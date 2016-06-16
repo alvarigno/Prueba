@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>index</title>
+</head>
+<body>
+    <a href="@Url.Action("create", "persona")">Add New Persona</a>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>nombre</th>
+            <th>apellido</th>
+            <th>Opciones</th>
+        </tr>
+        @foreach (var persona in ViewBag.listPersonas)
+        {
+
+            <tr>
+                <td>@persona.idTasa</td>
+                <td>@persona.nombre</td>
+                <td>@persona.apellido</td>
+                <td>
+                    <a href="@Url.Action("delete","persona", new { id = persona.idTasa })">Delete</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("edit","persona", new { id = persona.idTasa })">Edit</a>
+                </td>
+            </tr>
+
+        }
+
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model WebAppCRUD.ViewModel.PersonaViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>create</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Create", "Persona"))
+        {
+
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Persona.nombre)</td>
+                    <td>@Html.TextBoxFor(model => model.Persona.nombre)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Persona.apellido)</td>
+                    <td>@Html.TextBoxFor(model => model.Persona.apellido)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="save" /></td>
+                </tr>
+            </table>
+
+        }
+    </div>
+</body>
+</html>
