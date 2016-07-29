@@ -558,19 +558,35 @@ namespace ProcesaDocumentos
         public string ChangeEncodingFormat(string DataChangeEnconde)
         {
 
-            string utf8String = DataChangeEnconde;
+            //////////////////////////////Original Code//////////////////////////////////////////
+            //string utf8String = DataChangeEnconde;////original
             string propEncodeString = string.Empty;
+            //byte[] utf8_Bytes = new byte[utf8String.Length];
+            //for (int i = 0; i < utf8String.Length; ++i)
+            //{
+            //    utf8_Bytes[i] = (byte)utf8String[i];
+            //}
 
-            byte[] utf8_Bytes = new byte[utf8String.Length];
-            for (int i = 0; i < utf8String.Length; ++i)
-            {
-                utf8_Bytes[i] = (byte)utf8String[i];
-            }
-
-            propEncodeString = Encoding.UTF8.GetString(utf8_Bytes, 0, utf8_Bytes.Length);
-            Console.WriteLine("Muestra Codificacion: Default: " + propEncodeString);
+            //propEncodeString = Encoding.UTF8.GetString(utf8_Bytes, 0, utf8_Bytes.Length);
+            //Console.WriteLine("Muestra Codificacion: Default: "+propEncodeString);
 
             //propEncodeString = pruebaborrame2(propEncodeString);
+            //////////////////////////////End Original Code//////////////////////////////////////////
+
+            ///////////////////////New Code ////////////////////////////////////////////
+            var specialCharacters = "áéíóúÁÉÍÓÚñÑüÜ@%!#$%^&*()?/>.<,:;'´|}]{[_~`+=-" + "\"";
+            var goodEncoding = Encoding.UTF8;
+            var badEncoding = Encoding.GetEncoding(28591);
+            var badStrings = specialCharacters.Select(c => badEncoding.GetString(goodEncoding.GetBytes(c.ToString())));
+
+            var sourceText = DataChangeEnconde;
+            if (badStrings.Any(s => sourceText.Contains(s)))
+            {
+
+                propEncodeString = goodEncoding.GetString(badEncoding.GetBytes(sourceText));
+                Console.WriteLine("propEncodeString: " + propEncodeString);
+            }
+            ///////////////////////End New Code ////////////////////////////////////////////
 
             return propEncodeString;
         }
