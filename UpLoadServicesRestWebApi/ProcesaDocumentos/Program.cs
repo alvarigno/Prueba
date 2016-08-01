@@ -574,19 +574,52 @@ namespace ProcesaDocumentos
             //////////////////////////////End Original Code//////////////////////////////////////////
 
             ///////////////////////New Code ////////////////////////////////////////////
-            var specialCharacters = "áéíóúÁÉÍÓÚñÑüÜ@%!#$%^&*()?/>.<,:;'´|}]{[_~`+=-" + "\"";
-            var goodEncoding = Encoding.UTF8;
-            var badEncoding = Encoding.GetEncoding(28591);
-            var badStrings = specialCharacters.Select(c => badEncoding.GetString(goodEncoding.GetBytes(c.ToString())));
-
-            var sourceText = DataChangeEnconde;
-            if (badStrings.Any(s => sourceText.Contains(s)))
-            {
-
-                propEncodeString = goodEncoding.GetString(badEncoding.GetBytes(sourceText));
-                Console.WriteLine("propEncodeString: " + propEncodeString);
-            }
+            //var specialCharacters = "áéíóúÁÉÍÓÚñÑüÜ@%!#$%^&*()?/>.<,:;'´|}]{[_~`+=-" + "\"";
+            //var goodEncoding = Encoding.UTF8;
+            //var badEncoding = Encoding.GetEncoding(28591);
+            //var badStrings = specialCharacters.Select(c => badEncoding.GetString(goodEncoding.GetBytes(c.ToString())));
+//
+            //var sourceText = DataChangeEnconde;
+            //if (badStrings.Any(s => sourceText.Contains(s)))
+            //{
+//
+            //    propEncodeString = goodEncoding.GetString(badEncoding.GetBytes(sourceText));
+            //    Console.WriteLine("propEncodeString: " + propEncodeString);
+            //}
             ///////////////////////End New Code ////////////////////////////////////////////
+
+            //string utf8String = DataChangeEnconde;
+            string propEncodeString = string.Empty;
+
+            //byte[] utf8_Bytes = new byte[utf8String.Length];
+            //for (int i = 0; i < utf8String.Length; ++i)
+            //{
+            //    utf8_Bytes[i] = (byte)utf8String[i];
+            //}
+
+            //propEncodeString = Encoding.UTF8.GetString(utf8_Bytes, 0, utf8_Bytes.Length);
+
+            ///////////////////////New Code v4 ////////////////////////////////////////////
+
+            if (DataChangeEnconde.Contains("Ã"))
+            {
+                byte[] utf8_Bytes = new byte[DataChangeEnconde.Length];
+                for (int i = 0; i < DataChangeEnconde.Length; ++i)
+                {
+                    utf8_Bytes[i] = (byte)DataChangeEnconde[i];
+                }
+
+                propEncodeString = Encoding.UTF8.GetString(utf8_Bytes, 0, utf8_Bytes.Length);
+                //Console.WriteLine("trae caracter raro Ã ");
+            }
+            else
+            {
+                propEncodeString = DataChangeEnconde;
+                //Console.WriteLine("NO trae caracter raro Ã ");
+            }
+
+            ///////////////////////End New Code v4 ////////////////////////////////////////////
+
 
             return propEncodeString;
         }
