@@ -589,7 +589,7 @@ namespace ProcesaDocumentos
             ///////////////////////End New Code ////////////////////////////////////////////
 
             //string utf8String = DataChangeEnconde;
-            string propEncodeString = string.Empty;
+            //string propEncodeString = string.Empty;
 
             //byte[] utf8_Bytes = new byte[utf8String.Length];
             //for (int i = 0; i < utf8String.Length; ++i)

@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automotora.cs" />
+    <Compile Include="Documentos.cs" />
     <Compile Include="FilesUpLoad.cs" />
     <Compile Include="HDFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
