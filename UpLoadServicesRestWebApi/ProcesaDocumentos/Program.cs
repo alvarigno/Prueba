@@ -178,6 +178,8 @@ namespace ProcesaDocumentos
 
                 int a = mycommand.ExecuteNonQuery();
                 mycommand.Connection.Close();
+                mycommand.Connection.Dispose();
+                SqlConnection.ClearAllPools();
 
                 //int a = 0;
                 if (a == 0)
@@ -327,6 +329,8 @@ namespace ProcesaDocumentos
                 connection.CommandText = "UPDATE[dbo].[documentos] SET estado = 1, idemail = " + IdEmailParse + " WHERE fnombre = '" + fnombre + "' and sitio =" + sitio;
                 connection.ExecuteNonQuery();
                 connection.Connection.Close();
+                connection.Dispose();
+                SqlConnection.ClearAllPools();
 
             }
 
@@ -361,6 +365,8 @@ namespace ProcesaDocumentos
 
                 }
                 connection.Connection.Close();
+                connection.Connection.Dispose();
+                SqlConnection.ClearAllPools();
             }
 
             return verifica;
@@ -403,6 +409,8 @@ namespace ProcesaDocumentos
 
                 }
                 connection.Connection.Close();
+                connection.Connection.Dispose();
+                SqlConnection.ClearAllPools();
             }
 
             return verifica;
@@ -441,6 +449,8 @@ namespace ProcesaDocumentos
 
                 }
                 connection.Connection.Close();
+                connection.Connection.Dispose();
+                SqlConnection.ClearAllPools();
             }
 
             return verifica;
@@ -483,6 +493,8 @@ namespace ProcesaDocumentos
 
                 }
                 connection.Connection.Close();
+                connection.Connection.Dispose();
+                SqlConnection.ClearAllPools();
             }
 
             return verifica;
@@ -518,6 +530,8 @@ namespace ProcesaDocumentos
 
                 }
                 connection.Connection.Close();
+                connection.Connection.Dispose();
+                SqlConnection.ClearAllPools();
             }
 
             return verifica;
@@ -537,6 +551,8 @@ namespace ProcesaDocumentos
                 connection.CommandText = "INSERT INTO [Procesarmails].[dbo].[tbl_mp_fuentes] (uid_sitio, nombre) VALUES( " + uidsitio + ", '" + hostmail + "')";
                 connection.ExecuteNonQuery();
                 connection.Connection.Close();
+                connection.Connection.Dispose();
+                SqlConnection.ClearAllPools();
                 //VerificaFuente(fuente, uidsitio);
             }
         }
@@ -550,6 +566,8 @@ namespace ProcesaDocumentos
                 connection.CommandText = "INSERT INTO [Procesarmails].[dbo].[tbl_mp_tipos] (uid_fuente, tipo) VALUES( " + UidFunte + ", 'default')";
                 connection.ExecuteNonQuery();
                 connection.Connection.Close();
+                connection.Connection.Dispose();
+                SqlConnection.ClearAllPools();
                 //VerificaFuente(fuente, uidsitio);
             }
 

@@ -123,6 +123,8 @@ namespace UpLoadServicesRestWebApi.Controllers
 
             int a = mycommand.ExecuteNonQuery();
             mycommand.Connection.Close();
+            mycommand.Connection.Dispose();
+            SqlConnection.ClearAllPools();
 
             //int a = 0;
             if (a == 0)
