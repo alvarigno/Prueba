@@ -55,6 +55,7 @@ namespace UpLoadServicesRestWebApi.Controllers
 
         }
 
+
         public List<Documentos> get(string nombrearchivo)
         {
 
@@ -64,7 +65,7 @@ namespace UpLoadServicesRestWebApi.Controllers
 
                 string query = connection.CommandText;
                 connection.CommandText = "select * from dbo.documentos where fnombre = '" + nombrearchivo + "'";
-
+                
                 using (var reader = connection.ExecuteReader())
                 {
                     while (reader.Read())
