@@ -13,6 +13,7 @@ using System.Globalization;
 using System.Data;
 using System.Security.Permissions;
 using MimeKit;
+using System.Text.RegularExpressions;
 
 namespace ProcesaDocumentos
 {
@@ -136,7 +137,9 @@ namespace ProcesaDocumentos
 
                 if (DatoContenidoMailHtml.Length < 7000 && string.IsNullOrEmpty(DatoContenidoMailPlain)) {
 
-                    DatoContenidoMailPlain = DatoContenidoMailHtml; }
+                    //DatoContenidoMailPlain = DatoContenidoMailHtml; 
+                    DatoContenidoMailPlain = GetPlainTextFromHtml(DatoContenidoMailHtml);
+                }
 
                 //Data before to Inster//
 
@@ -635,6 +638,24 @@ namespace ProcesaDocumentos
         {
             string folder = Environment.CurrentDirectory;
             return folder+dato;
+        }
+
+        public string GetPlainTextFromHtml(string htmlString)
+        {
+            htmlString = Regex.Replace(htmlString, @"</p>", "\r\n", RegexOptions.Multiline).Trim();
+            htmlString = Regex.Replace(htmlString, @"<br>", "\n", RegexOptions.Multiline).Trim();
+            htmlString = Regex.Replace(htmlString, @"<br />", "\n", RegexOptions.Multiline).Trim();
+            htmlString = Regex.Replace(htmlString, @"</tr>", "\r", RegexOptions.Multiline).Trim();
+            string htmlTagPattern = "<.*?>";
+            var regexCss = new Regex("(\\<script(.+?)\\</script\\>)|(\\<style(.+?)\\</style\\>)", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            htmlString = regexCss.Replace(htmlString, string.Empty);
+            htmlString = Regex.Replace(htmlString, htmlTagPattern, string.Empty);
+            //htmlString = Regex.Replace(htmlString, @"^\s+$[\r\n]*", "", RegexOptions.Multiline);
+            //htmlString = Regex.Replace(htmlString, @"\s", " ", RegexOptions.Multiline);
+            //htmlString = Regex.Replace(htmlString, @"\n", " ", RegexOptions.Multiline).Trim();
+            htmlString = htmlString.Replace("&nbsp;", string.Empty);
+
+            return htmlString;
         }
 
     }
