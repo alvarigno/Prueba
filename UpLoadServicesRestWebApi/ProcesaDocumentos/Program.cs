@@ -125,7 +125,7 @@ namespace ProcesaDocumentos
 
             try
             {
-                DatoContenidoMailHtml = DatoContenidoMailHtml.Replace("'", "\"").Replace("\n", "").Replace("\r", "").Replace("\t", "");
+                //DatoContenidoMailHtml = DatoContenidoMailHtml.Replace("'", "\"").Replace("\n", "").Replace("\r", "").Replace("\t", "");
                 if (string.IsNullOrEmpty(DatoContenidoMailHtml) && DatoContenidoMailPlain.Length > 0)
                 {
                     DatoContenidoMailHtml = DatoContenidoMailPlain.Replace("'", "\"");
