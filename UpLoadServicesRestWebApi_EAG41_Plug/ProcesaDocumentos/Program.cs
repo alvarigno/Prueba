@@ -8,11 +8,12 @@ using System.Text;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.IO;
+using EAGetMail;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Data;
 using System.Security.Permissions;
-using MimeKit;
+
 
 namespace ProcesaDocumentos
 {
@@ -58,55 +59,72 @@ namespace ProcesaDocumentos
         public void ParseEmail(string emlFile)
         {
 
-            var mimeMessage = MimeMessage.Load(emlFile);
+            Mail oMail = new Mail("TryIt");
 
-            var header = mimeMessage.Headers;
+            oMail.Load(emlFile, false);
 
-            var mailto = mimeMessage.To;
-            var mailfrom = mimeMessage.From;
-            var mailcc = mimeMessage.Cc;
-            var mailsubject = mimeMessage.Subject;
-            DateTime maildate = mimeMessage.Date.UtcDateTime;
-            var mailplainbody = mimeMessage.TextBody;
-            var mailhtmlbody = mimeMessage.HtmlBody;
-
-            for (int i = 0; i < header.Count; i++)
-            {
-
-                string datoslocales;
-                datoslocales = header[i].ToString() + "\r\n";
-                DatoHeaderMail = DatoHeaderMail + datoslocales;
-
-            }
-
+            // Parse Header Mail
+            DatoHeaderMail = oMail.Headers.ToString();
+            DatoHeaderMail = DatoHeaderMail.Replace("'", "\'");
+            //Console.WriteLine("Header: {0}", oMail.Headers.ToString());
 
             // Parse Mail From, Sender
-            DatoRemitenteMail = mailfrom.ToString();
+            DatoRemitenteMail = oMail.From.ToString();
             //Console.WriteLine("From: {0}", oMail.From.ToString());
 
             //Date
-            DatoFechaFromate = maildate;
+            DatoFechaMail = oMail.SentDate.ToString();
+
+            DatoFechaFromate = oMail.SentDate;
+
+            //DatoFechaFromate = DateTime.Parse(DatoFechaMail, culture, System.Globalization.DateTimeStyles.AssumeLocal);
+            //DatoFechaFromate = Convert.ToDateTime(DatoFechaMail);
+
+            //            string format = "yyyy-dd-MM HH:MM:ss";
+            //            DatoFechaFromate.ToString(format);
+
             //Console.WriteLine("Date: {0}"+ DatoFechaFromate);
 
             // Parse Mail To, Recipient
-            DataDestinatariosString = mailto.ToString();
+            EAGetMail.MailAddress[] addrs = oMail.To;
+            DatoDestinatariosMail = new string[addrs.Length];
+            for (int i = 0; i < addrs.Length; i++)
+            {
+                DatoDestinatariosMail[i] = addrs[i].ToString();
+            }
+            if (addrs.Length > 0)
+            {
+                DataDestinatariosString = DatoDestinatariosMail.Aggregate((a, b) => Convert.ToString(a) + "," + Convert.ToString(b));
+            }
             //Console.WriteLine("Destinatarios To: " + DataDestinatariosString);
 
             // Parse Mail CC
-
-            DataCcString = mailcc.ToString();
+            EAGetMail.MailAddress[] addrs2 = oMail.Cc;
+            DatoCcMail = new string[addrs2.Length];
+            for (int i = 0; i < addrs2.Length; i++)
+            {
+                DatoCcMail[i] = addrs2[i].ToString();
+            }
+            if (addrs2.Length > 0)
+            {
+                DataCcString = DatoCcMail.Aggregate((c, d) => Convert.ToString(c) + "," + Convert.ToString(d));
+            }
+            else { DataCcString = "vacio"; }
             //Console.WriteLine("Destinatarios Cc: " + DataCcString); 
 
             // Parse Mail Subject
-            DatoAsuntoMail = mailsubject;
+            String personalprueba = oMail.Subject;
+            personalprueba = oMail.Subject;
+            personalprueba = personalprueba.Replace("(Trial Version)", "");
+            DatoAsuntoMail = personalprueba.ToString();
             //Console.WriteLine("Subject: "+ personalprueba);
 
             // Parse Mail Text/Plain body
-            DatoContenidoMailPlain = mailplainbody;
+            DatoContenidoMailPlain = oMail.TextBody.ToString();
             //Console.WriteLine("TextBody: {0}", oMail.TextBody);
 
             // Parse Mail Html Body
-            DatoContenidoMailHtml = mailhtmlbody;
+            DatoContenidoMailHtml = oMail.HtmlBody.ToString();
             //Console.WriteLine("HtmlBody: {0}", oMail.HtmlBody);
 
         }
@@ -125,18 +143,11 @@ namespace ProcesaDocumentos
             try
             {
                 DatoContenidoMailHtml = DatoContenidoMailHtml.Replace("'", "\"").Replace("\n", "").Replace("\r", "").Replace("\t", "");
-                if (string.IsNullOrEmpty(DatoContenidoMailHtml) && DatoContenidoMailPlain.Length > 0)
+                if (DatoContenidoMailHtml.Length == 0)
                 {
                     DatoContenidoMailHtml = DatoContenidoMailPlain.Replace("'", "\"");
                 }
-
-                if (DatoContenidoMailHtml.Length > 7000 && DatoContenidoMailPlain.Length > 0) {
-
-                    DatoContenidoMailHtml = DatoContenidoMailPlain.Replace("'", "\""); }
-
-                if (DatoContenidoMailHtml.Length < 7000 && string.IsNullOrEmpty(DatoContenidoMailPlain)) {
-
-                    DatoContenidoMailPlain = DatoContenidoMailHtml; }
+                else if (DatoContenidoMailHtml.Length > 7000) { DatoContenidoMailHtml = DatoContenidoMailPlain.Replace("'", "\""); }
 
                 //Data before to Inster//
 
