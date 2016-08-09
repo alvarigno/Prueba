@@ -1,0 +1,282 @@
+﻿/* Estilos de Página de Estadísticas
+    Modificado por: Álvaro EMparán
+    Empresa: Chileautos s.a.
+    fecha: 15/10/2015
+***************************************************************************************************/
+
+    .font-color { color:#666666; }
+
+    h1 { color:#787878; }
+    h2 { color:#787878; }
+    h3 { color:#787878; }
+    h4 { color:#787878; }
+    h5 { color:#787878; }
+    h6 { color:#787878; }
+
+
+		body {
+			/* background-color: #fcfcfc; */
+			font-family: arial, verdana;
+            
+		}
+
+        p {  text-align:justify; }
+
+ 	    .navbar-wrapper { 
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    margin-top:0px;
+    background-color: #CCC;
+    background-image: url(/images/carrusel/cr_foto_01.png);
+    background-position: 0px 0px 0px 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5px;
+    border-bottom: #ccc 2px solid;
+        z-index: 1000000;
+
+ 	    }
+ 	    .navbar-wrapper-fijo { z-index:999999999999;  }
+        .navbar-wrapper-fijo > .container { width:100%; }
+        
+         h2 {
+			margin: 0px auto;
+			/*width: 70%;*/
+		}
+
+		h3 {
+			/*background-color: #ebebeb;*/
+			margin: 0px;
+			padding: 4px;
+            font-weight:lighter;
+			width: 95%;
+		}
+
+ 	        h3 > img { vertical-align:middle; }
+		
+        #container {
+			margin: 0px auto;
+            width:950px;
+		}
+
+		#datosM, #datosY { 
+			margin: 0px;
+		}
+
+		#datosM div, #datosY div {
+			float: left;
+			font-size: 18px;
+			font-weight: bold;
+			margin: 10px 0 0 0;
+			width: 328px;
+		}
+
+		#areachart {
+			height: 250px;
+			margin: 20px auto;
+			width: 90%;
+		}
+
+		.barchart {
+			float: left;
+			margin: 20px 0 0 20px;
+			padding-bottom: 30px;
+			width: 48%;
+		}
+		.totales { font-size: 24px; }
+
+		.section {
+			float:left;
+			margin:30px 0 0 0;
+			width:100%;
+		}
+
+		.def { font-size: 12px; text-align:left; }
+		.def li { margin: 4px 0px; }
+		
+		.titulo h2 {margin:20px auto;font-size:26px;}
+		.titulofondo {background-color:#058dc7;border-radius:8px;padding:3px 10px;text-align:left;font-size:26px;color:#ffffff;width:100%;float:left;}	
+		.titulofondochico {background-color:#058dc7;border-radius:8px;padding:3px 10px;text-align:left;font-size:26px;color:#ffffff;width:100%;float:left;}	
+		.titulotriangulo img {float:left;margin-left: 25px;margin-top: -31px;}	
+		
+		.datos1 {float:left;width:290px;margin:30px 20px;}		
+		.datos1 .titulo {color:#626262;font-size:18px;}		
+		.datos1 .titulonumeros {color:#626262;font-size:26px;}
+		.datos11 {float:left;width:290px;margin: 30px 30px 0 180px;}		
+		.datos11 .titulo {color:#626262;font-size:18px;}		
+		.datos11 .titulonumeros {color:#ff0000;font-size:20px;}
+		
+		.datos2info {margin:25px 0px 50px;display: inline-block;}			
+		.datos2info .datos2 {float:left;width:100%;margin:5px 0px;}			
+		.ie7 .datos2info .datos2 {width:700px;}			
+		.datos2info .datos2 .titulo {color: #626262;float: left;font-size:14px;padding-right: 10px;text-align: right;width: 155px;}		
+		.datos2info .datos2 .titulonumeros{color:#ff0000;width:135px;text-align:right;font-size:18px;margin-left:790px;}
+        /*058dc7*/
+		.datos2info .datos2 .graficoh {background-color: #734495;float: left;height: 30px;position: relative;width: 16%;z-index:1;max-width: 65%;}
+		.datos2info .datos2 .graficohfondo {background-color: #e1e1e1;float: left;height: 30px;margin-left: 165px;width: 650px;position:absolute;}/*e4e4e4*/
+		.ie7 .datos2info .datos2 .graficohfondo {margin-left: -533px;}
+		.datos2info .datos2 .graficohfondofinal {background-color: #734495;float: left;height: 30px;width: 650px;}/*4d4948*/
+		.datos2info .datos2 p{float: left;position: relative;width: 40px;margin:5px;z-index:2;color: #734495;}/*626262*/
+		
+		.datos3bloque {width: 470px;margin-left: 60px;float:left;margin-bottom: 0px;height:440px;}	
+		.datos3bloque .datos3 {width: 155px;float:left;margin: 0px auto; text-align:center;}	
+		.datos3bloque .datos3 .imagentext{width: 155px;float: left;}	
+		.datos3bloque .datos3 .imagentext img{text-align:center;}
+		.datos3bloque .datos3 .imagentext .titulonumeros{color:#086bb4;text-align:center;font-size:27px;}		
+		.datos3bloque .datos3 .porcentaje{float:left;margin:0px auto; width:55px;}				
+		.datos3bloque .datos3 .porcentaje img{float:left;margin-top: -37px;}				
+		.datos3bloque .datos3 .porcentaje p {color: #ffffff;font-size: 12px;margin: 0 0 0 0; text-align:center; }
+		.datos3bloque .datos3 .dispositivo1{float:left;}				
+		.datos3bloque .datos3 .dispositivo1 p {color:#086bb4;font-size: 20px;text-align: center;width: 155px;margin-top: 2px;}
+
+         .datos3 {width: 155px;float:left; margin-top:50px; text-align:center;}	
+         .datos3 .imagentext{width: 155px;float: left;}	
+         .datos3 .imagentext img{text-align:center;}
+         .datos3 .imagentext .titulonumeros{color:#086bb4;text-align:center;font-size:16px;}		
+         .datos3 .porcentaje{float:left;margin:0px auto; width:55px;}				
+         .datos3 .porcentaje img{float:left;margin-top: -37px;}				
+         .datos3 .porcentaje p {color: #ffffff;font-size: 12px;margin: 0 0 0 0; text-align:center; }
+         .datos3 .dispositivo1{float:left;}				
+         .datos3 .dispositivo1 p {color:#086bb4;font-size: 20px;text-align: center;width: 155px;margin-top: 2px;}
+			
+		.datos4bloque{width: 470px;float:left;height: 390px;}	
+		.datos4bloque .datos4 {width: 470px;text-align:left;margin:20px 0 10px;}	
+		.datos4bloque .datos4  .titulonumeros{color:#626262;float:left;font-size:22px;margin-top:40px;width:100%;}
+		.datos4bloque .datos4  .tituloporcentajes{color:#626262;float:left;font-size:22px;margin-top:40px;width:100%;text-align:center;}
+		.datos4bloque .datos4  .porcentajecirculo {text-align:center;width:100%}
+		.datos4bloque .datos4  .porcentajecirculo img{margin:20px auto;text-align:center;}
+ 	      .porcentajecirculo > div > div { z-index:-1; }
+ 	    .wrap-graf-edad > div > div { z-index:-1; }
+
+		.datos5bloque{width: 470px;margin-right: 60px;float:left;}	
+		.datos5bloque .tituloporcentajes{margin-top: 60px;text-align:center;color: #626262;}	
+		.datos5bloque .datos5 {width: 68px;float:left;margin:20px 5px 0;}	
+		.datos5bloque .datos5 .graficoh {background-color: #e4e4e4;height: 148px;position: ;width: 68px; z-index:1;}
+		.ie7 .datos5bloque .datos5 .graficoh {margin-left:-68px;}
+		.datos5bloque .datos5 .graficohfondo {background-color: #0080ed;float: left;height: 200px;width: 68px;}
+		.datos5bloque .datos5 .titulo {color: #626262;font-size: 16px;text-align:center;width:68px;}
+		.datos5bloque .datos5 .titulonumeros{color:#626262;text-align:center;font-size:16px;width:68px;}	
+		
+		.datos6bloque{width: 470px;float:left;margin-bottom: 40px;}
+		.datos6bloque .datos6 {width: 470px;text-align:left;margin:20px 0 10px;}
+		.datos6bloque .datos6 .info6 {width:230px;float: left;}
+		.datos6bloque .datos6 .info6 .titulo {color: #626262;font-size: 20px;text-align:center;}
+		.datos6bloque .datos6 .info6 .titulonumeros{color:#0080ed;text-align:center;font-size:30px;}
+		.datos6bloque .datos6 .info6 .tituloporcentaje{color:#0080ed;text-align:center;font-size:16px;}	
+		.datos6bloque .datos6 .info6 .titulonumeros2{color:#3dc7ff;text-align:center;font-size:30px;}
+		.datos6bloque .datos6 .info6 .tituloporcentaje2{color:#3dc7ff;text-align:center;font-size:16px;}	
+		.datos6bloque .datos6  .porcentajecirculo img{margin:20px auto;text-align:center;}
+		.datos6bloque .datos6  .porcentajecirculo {width: 470px;text-align: center;}
+		
+		.datos7info{width: 100%;float:left;margin: 50px 0;}
+		.datos7info .navegador{width: 200px;float:left;}
+		.datos7info .navegador .titulo{color:#626262;text-align:center;font-size:26px;}
+		.datos7info .navegador .porcentaje{color:#626262;text-align:center;font-size:20px;}
+		
+		.datos8info{width: 102%;float:left;margin: 50px 0;}
+		.datos8info .navegador {width: 200px;float:left;margin:0 27px;}
+		.datos8info .navegador .titulo{color:#626262;text-align:center;font-size:26px;}
+		.datos8info .navegador .porcentaje{color:#626262;text-align:center;font-size:20px;}
+		
+		.separadorazul{height:5px;width:80%;margin:40px auto;background-color:#0080ee;clear: both;}
+
+
+		.sexo {
+			float: left;
+		    width: 464px;
+		    height: 55px;
+		    margin-top: -55px;
+		}
+		.contenedor-porcentaje-sexo {
+			background-color: #D3D3D3;
+			float: left;
+			height: 55px;
+			width: 464px;
+		}
+		.contenedor-porcentaje-sexo .porcentaje {
+			height: 100%;
+		    float: left;
+		}
+		.contenedor-porcentaje-sexo .porcentaje-hombre { background-color: #058dc7; }
+		.contenedor-porcentaje-sexo .porcentaje-mujer { background-color: #79b1d6; }
+		.sexo-hombre { background-image: url('img/hombre.png'); }
+		.sexo-mujer { background-image: url('img/mujer.png'); }
+
+		.browser {
+			background-repeat: no-repeat;
+			width: 112%;
+			height: 100%;
+		}
+
+		.browser_0 { background-position: 20px -175px; margin-top: -162px; }
+		.browser_100 { background-position: 20px 0px; }
+
+		.chrome { background-image: url('img/chrome.png'); }
+		.firefox { background-image: url('img/firefox.png'); }
+		.safari { background-image: url('img/safari.png'); }
+		.ie { background-image: url('img/iexplorer.png'); }
+		.opera { background-image: url('img/opera.png'); }
+
+		/* .chrome_0 { background-image: url('img/chrome.png');  }
+		.firefox_0 { background-image: url('img/firefox.png'); }
+		.safari_0 { background-image: url('img/safari.png'); }
+		.ie_0 { background-image: url('img/iexplorer.png'); }
+		.opera_0 { background-image: url('img/opera.png'); }
+		.chrome_100 { background-image: url('img/chrome.png'); }
+		.firefox_100 { background-image: url('img/firefox.png'); }
+		.safari_100 { background-image: url('img/safari.png'); }
+		.ie_100 { background-image: url('img/iexplorer.png'); }
+		.opera_100 { background-image: url('img/opera.png'); } */
+
+		.wrap-browser {
+			width: 165px;
+			height: 165px;			
+		}
+
+		/* edades */
+		.wrap-graf-edad {
+			height: 200px;
+			width: 68px;
+		}
+		.datos5bloque .datos5 .graficohfondo {
+			background-color: #9F492F;/*058dc7*/
+			float: none;
+			height: 100%;
+			width: 100%;
+		}
+
+		.datos5bloque .datos5 .graficoh {
+			background-color: #e4e4e4;
+			float: none;
+			height: 100%;
+			margin-top: -200px;
+			position: relative;
+			width: 100%;
+		}
+
+
+/* Estilos indicadores
+*************************************************************************************************************************************/
+
+.estilos-numeros { font-size:12px; color:#ffffff; }
+.estilos-numeros > span { font-size:16px; }
+
+
+.circle1 {
+    width: 120px;
+    height: 120px;
+    background: #734495;/*058dc7*/
+    vertical-align:middle;
+    text-align:center;
+    padding-top:40px;
+}
+.circle2 {
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+
