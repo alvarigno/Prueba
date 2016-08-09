@@ -32,7 +32,7 @@ namespace ProcesaDocumentos
         string format = "yyyy-MM-dd HH:MM:ss";
         DateTime DatoFechaFromate;
         string DatoAsuntoMail;
-        string DatoHeaderMail;
+        string DatoHeaderMail = "";
         string[] DatoDestinatariosMail = new string[100];
         string DataDestinatariosString;
         string[] DatoCcMail = new string[100];
