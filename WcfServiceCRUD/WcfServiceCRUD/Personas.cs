@@ -16,7 +16,7 @@ namespace WcfServiceCRUD
 
         public string nombre
         {
-        
+
             get;
             set;
         }
