@@ -18,5 +18,29 @@ namespace ProcesaDocumentos
             return con;
         }
 
+        private SqlConnection _con;
+
+
+        public SqlConnection Conexion()
+        {
+            string str = "Data Source=ALVARO-PC\\SQLEXPRESS; Initial Catalog = Procesarmails; User ID=jesus; Password=12345";
+            //string strCadenaConexion = ConfigurationManager.ConnectionStrings["bdMailParser"].ToString();
+
+            _con = new SqlConnection(str);
+            return _con;
+        }
+
+
+        public void Abrir()
+        {
+            _con.Open();
+
+        }
+
+        public void Cerrar()
+        {
+            _con.Close();
+        }
+
     }
 }

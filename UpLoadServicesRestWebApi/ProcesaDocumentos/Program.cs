@@ -162,17 +162,76 @@ namespace ProcesaDocumentos
 
                 //Console.WriteLine("INSERT INTO[dbo].[tbl_mp_email] (uid_tipo,uid_estado,uid_automotora,email,fecha_recibido,asunto,cabecera,destinatarios,remitente, cc, email_html) VALUES(" + DataUidTipo + "," + 4 + "," + DataUidAutomotora + ",'" + DatoContenidoMailPlain.Replace("'", "\"") + "','" + DatoFechaFromate.ToString(format) + "','" + DatoAsuntoMail + "','" + DatoHeaderMail.Replace("'", "''") + "','" + DataDestinatariosString + "','" + DatoRemitenteMail + "', '" + DataCcString + "', '" + DatoContenidoMailHtml + "');");
 
-                SqlCommand mycommand = new SqlCommand();
+                //SqlCommand mycommand = new SqlCommand();
 
-                mycommand.CommandType = System.Data.CommandType.Text;
-                mycommand.Connection = myConnection.GetConnection();
-                //mycommand.CommandText = "INSERT INTO[dbo].[tbl_mp_email] (uid_tipo,uid_estado,uid_automotora,email,fecha_recibido,asunto,cabecera,destinatarios,remitente, cc, email_html) VALUES(" + DataUidTipo + "," + 4 + "," + DataUidAutomotora + ",'" + DatoContenidoMailPlain.Replace("'", "\"") + "',CONVERT(DATETIME, '" + DatoFechaFromate.ToString(format) + "', 120),'" + DatoAsuntoMail + "','" + DatoHeaderMail.Replace("'", "''") + "','" + DataDestinatariosString + "','" + DatoRemitenteMail + "', '" + DataCcString + "', '" + DatoContenidoMailHtml + "')";
-                mycommand.CommandText = "INSERT INTO[dbo].[tbl_mp_email] (uid_tipo,uid_estado,uid_automotora,email,fecha_recibido,asunto,cabecera,destinatarios,remitente, cc, email_html) VALUES(" + DataUidTipo + "," + 4 + "," + DataUidAutomotora + ",'" + DatoContenidoMailPlain.Replace("'", "\"") + "',CONVERT(DATETIME, '" + DatoFechaFromate + "', 120),'" + DatoAsuntoMail + "','" + DatoHeaderMail.Replace("'", "''") + "','" + DataDestinatariosString + "','" + DatoRemitenteMail + "', '" + DataCcString + "', '" + DatoContenidoMailHtml + "')";
+                //mycommand.CommandType = System.Data.CommandType.Text;
+                //mycommand.Connection = myConnection.GetConnection();
+                ////mycommand.CommandText = "INSERT INTO[dbo].[tbl_mp_email] (uid_tipo,uid_estado,uid_automotora,email,fecha_recibido,asunto,cabecera,destinatarios,remitente, cc, email_html) VALUES(" + DataUidTipo + "," + 4 + "," + DataUidAutomotora + ",'" + DatoContenidoMailPlain.Replace("'", "\"") + "',CONVERT(DATETIME, '" + DatoFechaFromate.ToString(format) + "', 120),'" + DatoAsuntoMail + "','" + DatoHeaderMail.Replace("'", "''") + "','" + DataDestinatariosString + "','" + DatoRemitenteMail + "', '" + DataCcString + "', '" + DatoContenidoMailHtml + "')";
+                //mycommand.CommandText = "INSERT INTO[dbo].[tbl_mp_email] (uid_tipo,uid_estado,uid_automotora,email,fecha_recibido,asunto,cabecera,destinatarios,remitente, cc, email_html) VALUES(" + DataUidTipo + "," + 4 + "," + DataUidAutomotora + ",'" + DatoContenidoMailPlain.Replace("'", "\"") + "',CONVERT(DATETIME, '" + DatoFechaFromate + "', 120),'" + DatoAsuntoMail + "','" + DatoHeaderMail.Replace("'", "''") + "','" + DataDestinatariosString + "','" + DatoRemitenteMail + "', '" + DataCcString + "', '" + DatoContenidoMailHtml + "')";
 
-                int a = mycommand.ExecuteNonQuery();
-                mycommand.Connection.Close();
-                mycommand.Connection.Dispose();
-                SqlConnection.ClearAllPools();
+                //int a = mycommand.ExecuteNonQuery();
+                //mycommand.Connection.Close();
+                //mycommand.Connection.Dispose();
+                //SqlConnection.ClearAllPools();
+                int a = 0;
+
+                myConnection con = new myConnection();
+
+
+
+                    //SqlCommand cmd = new SqlCommand("SP_AddEmail", con.Conexion());
+                    //cmd.CommandType = CommandType.StoredProcedure;
+
+                    //cmd.Parameters.Add("@uidTipo", SqlDbType.Int).Value = DataUidTipo;
+                    //cmd.Parameters.Add("@@uidestado", SqlDbType.Int).Value = 4;
+                    //cmd.Parameters.Add("@uidAutom", SqlDbType.Int).Value = DataUidAutomotora;
+                    //cmd.Parameters.Add("@txtEmail", SqlDbType.VarChar).Value = DatoContenidoMailPlain.Replace("'", "\"");
+                    ////cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = "CONVERT(DATETIME, '" + DatoFechaFromate + "', 120)";
+                    //cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = DatoFechaFromate;
+
+                    //cmd.Parameters.Add("@asunto", SqlDbType.VarChar).Value = DatoAsuntoMail;
+                    //cmd.Parameters.Add("@cabecera", SqlDbType.VarChar).Value = DatoHeaderMail.Replace("'", "''");
+                    //cmd.Parameters.Add("@destinatarios", SqlDbType.VarChar).Value = DataDestinatariosString;
+                    //cmd.Parameters.Add("@remitente", SqlDbType.VarChar).Value = DatoRemitenteMail;
+                    //cmd.Parameters.Add("@cc", SqlDbType.VarChar).Value = DataCcString;
+                    //cmd.Parameters.Add("@htmlEmail", SqlDbType.VarChar).Value = DatoContenidoMailHtml;
+
+                    ////SqlParameter prueba = new SqlParameter("@uidemail", 0);
+                    ////cmd.Parameters.Add(prueba);
+
+                    //con.Abrir();
+                    //SqlDataReader alvaro = cmd.ExecuteReader();
+                    //con.Cerrar();
+
+
+                  using (SqlConnection mycon = con.Conexion()) {
+                    using (SqlCommand cmd2 = new SqlCommand("SP_AddEmail", mycon)) {
+                      cmd2.CommandType = CommandType.StoredProcedure;
+
+                                        cmd2.Parameters.Add("@uidTipo", SqlDbType.Int).Value = DataUidTipo;
+                                        cmd2.Parameters.Add("@uidestado", SqlDbType.Int).Value = 4;
+                                        cmd2.Parameters.Add("@uidAutom", SqlDbType.Int).Value = DataUidAutomotora;
+                                        cmd2.Parameters.Add("@txtEmail", SqlDbType.VarChar).Value = DatoContenidoMailPlain.Replace("'", "\"");
+                                        //cmd2.Parameters.Add("@fecha", SqlDbType.DateTime).Value = "CONVERT(DATETIME, '" + DatoFechaFromate + "', 120)";
+                                        cmd2.Parameters.Add("@fecha", SqlDbType.DateTime).Value = DatoFechaFromate;
+
+                                        cmd2.Parameters.Add("@asunto", SqlDbType.VarChar).Value = DatoAsuntoMail;
+                                        cmd2.Parameters.Add("@cabecera", SqlDbType.VarChar).Value = DatoHeaderMail.Replace("'", "''");
+                                        cmd2.Parameters.Add("@destinatarios", SqlDbType.VarChar).Value = DataDestinatariosString;
+                                        cmd2.Parameters.Add("@remitente", SqlDbType.VarChar).Value = DatoRemitenteMail;
+                                        cmd2.Parameters.Add("@cc", SqlDbType.VarChar).Value = DataCcString;
+                                        cmd2.Parameters.Add("@htmlEmail", SqlDbType.VarChar).Value = DatoContenidoMailHtml;
+                                        //cmd2.Parameters.Add("@uidEemail", SqlDbType.Int).Value = 0;
+
+                        var returnParameter = cmd2.Parameters.Add("@uidEmail", SqlDbType.Int);
+                        returnParameter.Direction = ParameterDirection.Output;
+
+                        mycon.Open();
+                        a = cmd2.ExecuteNonQuery();
+                        IdEmailParse = Int32.Parse(returnParameter.Value.ToString());
+                    }
+                  }
+                
 
                 //int a = 0;
                 if (a == 0)
@@ -238,7 +297,7 @@ namespace ProcesaDocumentos
 
                                         if (insertondatabase())
                                         {
-                                            IndiceMasAlto();
+                                            //IndiceMasAlto();
                                             UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio);
 
                                         }
@@ -257,7 +316,7 @@ namespace ProcesaDocumentos
 
                                         if (insertondatabase())
                                         {
-                                            IndiceMasAlto();
+                                            //IndiceMasAlto();
                                             UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio);
                                         }
                                         else
@@ -279,7 +338,7 @@ namespace ProcesaDocumentos
 
                                     if (insertondatabase())
                                     {
-                                        IndiceMasAlto();
+                                        //IndiceMasAlto();
                                         UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio);
 
                                     }
