@@ -179,32 +179,50 @@ namespace ProcesaDocumentos
 
 
 
-                    //SqlCommand cmd = new SqlCommand("SP_AddEmail", con.Conexion());
-                    //cmd.CommandType = CommandType.StoredProcedure;
+                //SqlCommand cmd = new SqlCommand("SP_AddEmail", con.Conexion());
+                //cmd.CommandType = CommandType.StoredProcedure;
 
-                    //cmd.Parameters.Add("@uidTipo", SqlDbType.Int).Value = DataUidTipo;
-                    //cmd.Parameters.Add("@@uidestado", SqlDbType.Int).Value = 4;
-                    //cmd.Parameters.Add("@uidAutom", SqlDbType.Int).Value = DataUidAutomotora;
-                    //cmd.Parameters.Add("@txtEmail", SqlDbType.VarChar).Value = DatoContenidoMailPlain.Replace("'", "\"");
-                    ////cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = "CONVERT(DATETIME, '" + DatoFechaFromate + "', 120)";
-                    //cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = DatoFechaFromate;
+                //cmd.Parameters.Add("@uidTipo", SqlDbType.Int).Value = DataUidTipo;
+                //cmd.Parameters.Add("@@uidestado", SqlDbType.Int).Value = 4;
+                //cmd.Parameters.Add("@uidAutom", SqlDbType.Int).Value = DataUidAutomotora;
+                //cmd.Parameters.Add("@txtEmail", SqlDbType.VarChar).Value = DatoContenidoMailPlain.Replace("'", "\"");
+                ////cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = "CONVERT(DATETIME, '" + DatoFechaFromate + "', 120)";
+                //cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = DatoFechaFromate;
 
-                    //cmd.Parameters.Add("@asunto", SqlDbType.VarChar).Value = DatoAsuntoMail;
-                    //cmd.Parameters.Add("@cabecera", SqlDbType.VarChar).Value = DatoHeaderMail.Replace("'", "''");
-                    //cmd.Parameters.Add("@destinatarios", SqlDbType.VarChar).Value = DataDestinatariosString;
-                    //cmd.Parameters.Add("@remitente", SqlDbType.VarChar).Value = DatoRemitenteMail;
-                    //cmd.Parameters.Add("@cc", SqlDbType.VarChar).Value = DataCcString;
-                    //cmd.Parameters.Add("@htmlEmail", SqlDbType.VarChar).Value = DatoContenidoMailHtml;
+                //cmd.Parameters.Add("@asunto", SqlDbType.VarChar).Value = DatoAsuntoMail;
+                //cmd.Parameters.Add("@cabecera", SqlDbType.VarChar).Value = DatoHeaderMail.Replace("'", "''");
+                //cmd.Parameters.Add("@destinatarios", SqlDbType.VarChar).Value = DataDestinatariosString;
+                //cmd.Parameters.Add("@remitente", SqlDbType.VarChar).Value = DatoRemitenteMail;
+                //cmd.Parameters.Add("@cc", SqlDbType.VarChar).Value = DataCcString;
+                //cmd.Parameters.Add("@htmlEmail", SqlDbType.VarChar).Value = DatoContenidoMailHtml;
 
-                    ////SqlParameter prueba = new SqlParameter("@uidemail", 0);
-                    ////cmd.Parameters.Add(prueba);
+                ////SqlParameter prueba = new SqlParameter("@uidemail", 0);
+                ////cmd.Parameters.Add(prueba);
 
-                    //con.Abrir();
-                    //SqlDataReader alvaro = cmd.ExecuteReader();
-                    //con.Cerrar();
+                //con.Abrir();
+                //SqlDataReader alvaro = cmd.ExecuteReader();
+                //con.Cerrar();
+
+                ////////////////////////Query String//////////////////////////////////////////
+
+                //myConnection con = new myConnection();
+                //_cnx = con.Conexion();
 
 
-                  using (SqlConnection mycon = con.Conexion()) {
+                //string queryString = "INSERT INTO [dbo].[tbl_mp_email] (uid_tipo,uid_estado,uid_automotora,email,fecha_recibido,asunto,cabecera,destinatarios,remitente, cc, email_html) VALUES(" + DataUidTipo + "," + 4 + "," + DataUidAutomotora + ",'" + DatoContenidoMailPlain.Replace("'", "\"") + "',CONVERT(DATETIME, '" + DatoFechaFromate + "', 120),'" + DatoAsuntoMail + "','" + DatoHeaderMail.Replace("'", "''") + "','" + DataDestinatariosString + "','" + DatoRemitenteMail + "', '" + DataCcString + "', '" + DatoContenidoMailHtml + "')";
+
+                //using (con.Conexion())
+                //{
+                //    SqlCommand cmd = new SqlCommand();
+                //    SqlCommand command = new SqlCommand(queryString, con.Conexion());
+                //    con.Abrir();
+                //    a = command.ExecuteNonQuery();
+                //    con.Cerrar();
+
+                //}
+
+                //////////////////////// Store Procedure//////////////////////////////////////
+                using (SqlConnection mycon = con.Conexion()) {
                     using (SqlCommand cmd2 = new SqlCommand("SP_AddEmail", mycon)) {
                       cmd2.CommandType = CommandType.StoredProcedure;
 
