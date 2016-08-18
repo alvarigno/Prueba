@@ -316,7 +316,7 @@ namespace ProcesaDocumentos
                                         if (insertondatabase())
                                         {
                                             //IndiceMasAlto();
-                                            UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio);
+                                            UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio, IdEmailParse);
 
                                         }
                                         else
@@ -335,7 +335,7 @@ namespace ProcesaDocumentos
                                         if (insertondatabase())
                                         {
                                             //IndiceMasAlto();
-                                            UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio);
+                                            UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio, IdEmailParse);
                                         }
                                         else
                                         {
@@ -357,7 +357,7 @@ namespace ProcesaDocumentos
                                     if (insertondatabase())
                                     {
                                         //IndiceMasAlto();
-                                        UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio);
+                                        UpDateEstadoDocumento(documentoemail.fnombre, documentoemail.sitio, IdEmailParse);
 
                                     }
                                     else
@@ -389,14 +389,14 @@ namespace ProcesaDocumentos
             return hola;
         }
 
-        public void UpDateEstadoDocumento(string fnombre, int sitio)
+        public void UpDateEstadoDocumento(string fnombre, int sitio, int IdEmailParselocal)
         {
 
             using (var connection = new SqlCommand())
             {
                 //Console.WriteLine("UPDATE[dbo].[documentos] SET estado = 1 WHERE fnombre = '" + fnombre + "' and sitio =" + sitio);
                 connection.Connection = myConnection.GetConnection();
-                connection.CommandText = "UPDATE[dbo].[documentos] SET estado = 1, idemail = " + IdEmailParse + " WHERE fnombre = '" + fnombre + "' and sitio =" + sitio;
+                connection.CommandText = "UPDATE[dbo].[documentos] SET estado = 1, idemail = " + IdEmailParselocal + " WHERE fnombre = '" + fnombre + "' and sitio =" + sitio;
                 connection.ExecuteNonQuery();
                 connection.Connection.Close();
                 connection.Dispose();
