@@ -242,6 +242,7 @@
     <Content Include="Views\Persona\index.cshtml" />
     <Content Include="Views\Persona\create.cshtml" />
     <Content Include="Views\Persona\edit.cshtml" />
+    <Content Include="Views\Persona\Index2Mio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

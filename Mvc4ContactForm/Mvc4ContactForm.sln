@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc4ContactForm", "Mvc4ContactForm\Mvc4ContactForm.csproj", "{0D17923A-125F-4362-861E-FEF6143BA18D}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs40
+		SccProjectUniqueName0 = Mvc4ContactForm\\Mvc4ContactForm.csproj
+		SccProjectName0 = Mvc4ContactForm
+		SccAuxPath0 = https://tfs.codeplex.com/tfs/tfs40
+		SccLocalPath0 = Mvc4ContactForm
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D17923A-125F-4362-861E-FEF6143BA18D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D17923A-125F-4362-861E-FEF6143BA18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D17923A-125F-4362-861E-FEF6143BA18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D17923A-125F-4362-861E-FEF6143BA18D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

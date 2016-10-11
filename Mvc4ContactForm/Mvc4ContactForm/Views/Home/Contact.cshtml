@@ -1,0 +1,36 @@
+﻿@model Mvc4ContactForm.Models.ContactModels
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>contact us</h1>
+@using (Html.BeginForm()) 
+{ 
+    @Html.ValidationSummary(true)
+    <div class="row">
+    @Html.LabelFor(model=>model.FirstName, "First Name:")
+    @Html.EditorFor(model=>model.FirstName)
+    @Html.ValidationMessageFor(model => model.FirstName)
+    </div>
+    <div class="row">
+    @Html.LabelFor(model=>model.LastName,"Last Name:")
+    @Html.EditorFor(model=>model.LastName)
+    @Html.ValidationMessageFor(model=>model.LastName)
+    </div>
+    <div class="row">
+    @Html.LabelFor(model=>model.Email,"Email:")
+    @Html.EditorFor(model=>model.Email)
+    @Html.ValidationMessageFor(model=>model.Email)
+    </div>
+    <div class="row">
+    @Html.LabelFor(model=>model.Comment,"Comments:")
+    @Html.TextAreaFor(model=>model.Comment)
+    @Html.ValidationMessageFor(model=>model.Comment)
+    </div>
+    <div class="buttons">
+    <div class="row">
+    <input type="submit" value="submit" />
+    <input type="reset" value="reset" />
+    </div>
+    </div>
+}

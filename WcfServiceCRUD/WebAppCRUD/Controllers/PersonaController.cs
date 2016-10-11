@@ -62,6 +62,12 @@ namespace WebAppCRUD.Controllers
 
         }
 
+        public ActionResult Index2Mio()
+        {
+            PersonaServicesClient psc = new PersonaServicesClient();
+            ViewBag.listPersonas = psc.findAll();
+            return View();
+        }
 
     }
 }
