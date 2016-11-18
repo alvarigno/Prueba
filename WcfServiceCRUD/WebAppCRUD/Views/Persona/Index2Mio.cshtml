@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <title>index</title>
 </head>
 <body>
@@ -39,5 +40,92 @@
 
     </table>
 
+
+    <script type="text/javascript" src="http://localhost:9011/js/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        $().ready(function () {
+
+            alert("funciona?");
+
+            cargalistado();
+
+            function cargalistado() {
+
+                sitio = $('#IdSitio').text();
+                estado = $('#IdEstado').text();
+
+                var cad = ("<table class='table table-striped'>");
+                cad += ("<thead><tr>");
+                cad += ("<th class='ocultar-columna'>id</th>");
+                cad += ("<th class='ocultar-columna'>idemail</th>");
+                cad += ("<th class='ocultar-columna'>Nombre Archivo</th>");
+                cad += ("<th class='ocultar-columna'>Sitio</th>");
+                cad += ("<th class='ocultar-columna'>Estado</th>");
+                cad += ("</tr></thead><tbody>");
+
+
+                $.ajax({ url: "http://172.16.0.103:9090/ServiceUpLoadFiles.svc/findBySitio/" + sitio + "/" + estado }).then(function (data) {
+
+                    sortJson(data, "id_num", "int", false);
+
+                    for (l in data.slice(0, 20)) {
+
+                        cad += ("<tr>");
+                        cad += ("<td>" + data[l].id_num + "</td>");
+                        cad += ("<td>" + data[l].idemail + "</td>");
+                        cad += ("<td>" + data[l].fnombre + "</td>");
+                        cad += ("<td>" + data[l].sitio + "</td>");
+
+                        if (data[l].estado == 0) { datanull = "sin leer (0)" } else { datanull = "Leído (1)" }
+
+                        cad += ("<td class='ocultar-columna'>" + datanull + "</td>");
+                        cad += ("</tr>");
+
+                        count++;
+
+                    }
+
+
+                    cad += ("</tbody></table>");
+                    $("#IdTablaRegistros").html(cad);
+
+                });
+
+            };
+
+
+    function cargalistadoagnos() {
+
+        var cad = ("<select id='IdSelecAgnos'>");
+
+        var cadena = $.getJSON('http://localhost:9010/WcfServiceTasa20161.svc/listagnos/', function (data) {
+
+
+            for (l in data.listagnosResult) {
+                cad += ("<option value='" + data.listagnosResult[l].Agno + "'>" + data.listagnosResult[l].Agno + "</option>");
+            }
+
+            cad += ("</select>");
+            $("#IdSelectAgnos").html(cad);
+
+            $('#IdSelecAgnos').change(function () {
+               // alert($(this).val());
+
+                agno = $('#IdSelecAgnos').val();
+                cargalistado(agno, marca, datomodelo);
+            });
+
+        })
+
+    };
+
+
+        });
+
+    </script>
+    <div id="IdTablaRegistros"></div>
 </body>
 </html>

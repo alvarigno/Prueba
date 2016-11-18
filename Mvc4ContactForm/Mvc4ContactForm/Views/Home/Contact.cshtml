@@ -4,33 +4,109 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1>contact us</h1>
-@using (Html.BeginForm()) 
-{ 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "contacto", id = "contacto" }))
+{
     @Html.ValidationSummary(true)
     <div class="row">
-    @Html.LabelFor(model=>model.FirstName, "First Name:")
-    @Html.EditorFor(model=>model.FirstName)
-    @Html.ValidationMessageFor(model => model.FirstName)
+        @Html.LabelFor(model => model.Nombre, "Nombre:")
+        @Html.EditorFor(model => model.Nombre)
+        @Html.ValidationMessageFor(model => model.Nombre)
     </div>
     <div class="row">
-    @Html.LabelFor(model=>model.LastName,"Last Name:")
-    @Html.EditorFor(model=>model.LastName)
-    @Html.ValidationMessageFor(model=>model.LastName)
+        @Html.LabelFor(model => model.Apellido, "Apellido:")
+        @Html.EditorFor(model => model.Apellido)
+        @Html.ValidationMessageFor(model => model.Apellido)
     </div>
     <div class="row">
-    @Html.LabelFor(model=>model.Email,"Email:")
-    @Html.EditorFor(model=>model.Email)
-    @Html.ValidationMessageFor(model=>model.Email)
+        @Html.LabelFor(model => model.Email, "Email:")
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email)
     </div>
     <div class="row">
-    @Html.LabelFor(model=>model.Comment,"Comments:")
-    @Html.TextAreaFor(model=>model.Comment)
-    @Html.ValidationMessageFor(model=>model.Comment)
+        @Html.LabelFor(model => model.Comentario, "Comentario:")
+        @Html.TextAreaFor(model => model.Comentario)
+    </div>
+    <div class="row">
+        @Html.LabelFor(model => model.destinatario, "Motivo:")
+        @{
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            listItems.Add(new SelectListItem
+            {
+                Text = "Consulta",
+                Value = "alvaro.emparan@gmail.com",
+                //Value = "info@chileautos.cl",
+                Selected = true
+
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = "Reclamo",
+                Value = "reclamos@chileautos.cl",
+
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = "sugerencia",
+                Value = "sugerencias@chileautos.cl"
+
+            });
+        }
+
+        @Html.DropDownListFor(model => model.destinatario, listItems, "-- Selecione un motivo --")
     </div>
     <div class="buttons">
-    <div class="row">
-    <input type="submit" value="submit" />
-    <input type="reset" value="reset" />
+        <div class="row">
+            <input type="submit" value="submit" />
+            <input type="reset" value="reset" />
+        </div>
     </div>
-    </div>
+            }
+
+
+@section Scripts
+{
+
+<script>
+
+    $.validator.setDefaults({
+        submitHandler: function() {
+            //alert("ir a paso dos!");
+            $("#contacto")[0].submit();
+        }
+    });
+
+    $.validator.addMethod("valueNotEquals", function (value, element, arg) {
+        return arg != value;
+    }, "Debe elegir una opción.");
+
+    $.validator.addMethod("phone", function (phone_number, element) {
+        phone_number = phone_number.replace(/\s+/g, "");
+        return this.optional(element) || phone_number.length > 8
+        /*phone_number.match(/^\+[0-9]{11}$/);*/
+        phone_number.match(/[0-9]{8}$/);
+    }, "Verificar largo de número telefónico debe ser 9 digitos.");
+
+    $("#contacto").validate({
+        rules: {
+            Nombre: "required",
+            Apellido: "required",
+            Email: {
+                required: true,
+                email: true
+            },
+            Comentario: "required"
+
+        }, messages: {
+            Nombre: "Debe ingresar su nombre",
+            Apellido: "Debe ingresar su apellido",
+            Email:{
+                required: "Debe ingresar un correo electrónico.",
+                email: "Su dirección de correo electrónico debe ser nombre@dominio.com."
+            },
+            Comentario: "Debe ingresar un comentario",
+        }
+    });
+
+</script>
+
 }
